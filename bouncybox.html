@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <title>bouncy box</title>
+    <style>
+      body {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      id="bouncingBox"
+      hidden
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzosHHskjpTofOm-1r5jtrwvktFOuRqEapepnhV7a7TpuyU4w:https://i.scdn.co/image/ab67616d0000b273071b95635babf102d5d379ca&s"
+    />
+    <canvas
+      id="canvas"
+      height="1040"
+      width="1890"
+      style="border: 1px solid white"
+    >
+    </canvas>
+  </body>
+</html>
+<script>
+  let boxX = 50;
+  let boxY = 50;
+  let deltaX = 5;
+  let deltaY = 5;
+  let canvas = document.getElementById("canvas");
+  let bouncingBox = document.getElementById("bouncingBox");
+  let ctx = canvas.getContext("2d");
+  setInterval(moveBox, 16);
+  function moveBox() {
+    boxX = boxX + deltaX;
+    boxY = boxY + deltaY;
+    ctx.clearRect(boxX - deltaX, boxY - deltaY, 50, 50);
+    ctx.drawImage(bouncingBox, boxX, boxY, 50, 50);
+    if (boxX === 0) {
+      deltaX *= -1;
+    }
+    if (boxX === 1890 - 50) {
+      deltaX *= -1;
+    }
+    if (boxY === 0) {
+      deltaY *= -1;
+    }
+    if (boxY === 1040 - 50) {
+      deltaY *= -1;
+    }
+  }
+</script>
