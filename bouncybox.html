@@ -31,23 +31,13 @@
   let canvas = document.getElementById("canvas");
   let bouncingBox = document.getElementById("bouncingBox");
   let ctx = canvas.getContext("2d");
-  setInterval(moveBox, 16);
+  setInterval(moveBox, 50);
+  ctx.clearRect(boxX - i * 2, boxY - i * 2, 50, 50);
   function moveBox() {
-    boxX = boxX + deltaX;
-    boxY = boxY + deltaY;
-    ctx.clearRect(boxX - deltaX, boxY - deltaY, 50, 50);
-    ctx.drawImage(bouncingBox, boxX, boxY, 50, 50);
-    if (boxX === 0) {
-      deltaX *= -1;
-    }
-    if (boxX === 1890 - 50) {
-      deltaX *= -1;
-    }
-    if (boxY === 0) {
-      deltaY *= -1;
-    }
-    if (boxY === 1040 - 50) {
-      deltaY *= -1;
+    for (let i = 0; i < 10; i = i + 1) {
+      ctx.drawImage(bouncingBox, boxX + i * 20, boxY + i * 20, 50, 50);
+      boxX += i * 20;
+      boxY += i * 20;
     }
   }
 </script>
